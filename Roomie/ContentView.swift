@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+struct TimePicker: View {
+    @State private var selectedTime: Date = Date()
+    
+    var body: some View {
+        DatePicker("Select a time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+            .datePickerStyle(WheelDatePickerStyle())
+            .labelsHidden()
+    }
+}
+
 struct StatusButton: View {
     let statusText: String
     let statusImage: String
@@ -26,10 +36,12 @@ struct StatusButton: View {
 struct ContentView: View {
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 12) {
                 Text("Please:")
                 
                 Text("Until:")
+                
+                TimePicker()
                 
                 Text("Because I'm:")
                 
@@ -40,6 +52,7 @@ struct ContentView: View {
                     StatusButton(statusText: "Studying", statusImage: "book.fill")
                     StatusButton(statusText: "Gooning", statusImage: "sparkles")
                 }
+                .fontWeight(.regular)
             }
             .fontWeight(.bold)
         }
