@@ -38,14 +38,16 @@ struct TimePicker: View {
 struct StatusButton: View {
     let statusText: String
     let statusImage: String
+    let action: () -> Void
+    let isSelected: Bool
     
     var body: some View {
-        Button(action: {print("hi")}) {
+        Button(action: action) {
             Label(statusText, systemImage: statusImage)
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(.indigo)
+        .background(isSelected ? .green : .indigo)
         .foregroundColor(.white)
         .cornerRadius(8)
     }
@@ -53,6 +55,8 @@ struct StatusButton: View {
 
 
 struct ContentView: View {
+    @State private var selectedButton = ""
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 14) {
@@ -67,11 +71,11 @@ struct ContentView: View {
                 Text("Because I'm:")
                 
                 VStack(spacing: 14) {
-                    StatusButton(statusText: "Having People Over", statusImage: "person.3.fill")
-                    StatusButton(statusText: "In a Call/Meeting", statusImage: "phone.fill")
-                    StatusButton(statusText: "Sleeping", statusImage: "moon.fill")
-                    StatusButton(statusText: "Studying", statusImage: "book.fill")
-                    StatusButton(statusText: "Gooning", statusImage: "sparkles")
+                    StatusButton(statusText: "Having People Over", statusImage: "person.3.fill", action: {selectedButton = "Having People Over"}, isSelected: selectedButton == "Having People Over")
+                    StatusButton(statusText: "In a Call/Meeting", statusImage: "phone.fill", action: {selectedButton = "In a Call/Meeting"}, isSelected: selectedButton == "In a Call/Meeting")
+                    StatusButton(statusText: "Sleeping", statusImage: "moon.fill", action: {selectedButton = "Sleeping"}, isSelected: selectedButton == "Sleeping")
+                    StatusButton(statusText: "Studying", statusImage: "book.fill", action: {selectedButton = "Studying"}, isSelected: selectedButton == "Studying")
+                    StatusButton(statusText: "Gooning", statusImage: "sparkles", action: {selectedButton = "Gooning"}, isSelected: selectedButton == "Gooning")
                 }
                 .fontWeight(.regular)
             }
@@ -81,6 +85,6 @@ struct ContentView: View {
     }
 }
 
-#Preview("iPhone") {
+#Preview() {
     ContentView()
 }
