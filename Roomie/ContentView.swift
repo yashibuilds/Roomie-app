@@ -7,15 +7,33 @@
 
 import SwiftUI
 
+struct EntryPicker: View {
+    enum EntryMode: String {
+        case doNotEnter = "Do Not Enter"
+        case enterQuietly = "Enter Quietly"
+    }
+    @State private var selectedEntry: EntryMode = .doNotEnter
+    
+    var body: some View {
+        Picker("Select an entry mode", selection: $selectedEntry) {
+            Text(EntryMode.doNotEnter.rawValue).tag(EntryMode.doNotEnter)
+            Text(EntryMode.enterQuietly.rawValue).tag(EntryMode.enterQuietly)
+        }
+        .pickerStyle(.segmented)
+    }
+}
+
+
 struct TimePicker: View {
     @State private var selectedTime: Date = Date()
     
     var body: some View {
         DatePicker("Select a time", selection: $selectedTime, displayedComponents: .hourAndMinute)
-            .datePickerStyle(WheelDatePickerStyle())
+            .datePickerStyle(.wheel)
             .labelsHidden()
     }
 }
+
 
 struct StatusButton: View {
     let statusText: String
@@ -33,11 +51,14 @@ struct StatusButton: View {
     }
 }
 
+
 struct ContentView: View {
     var body: some View {
         ScrollView {
-            VStack(spacing: 12) {
+            VStack(spacing: 14) {
                 Text("Please:")
+                
+                EntryPicker()
                 
                 Text("Until:")
                 
@@ -45,7 +66,7 @@ struct ContentView: View {
                 
                 Text("Because I'm:")
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 14) {
                     StatusButton(statusText: "Having People Over", statusImage: "person.3.fill")
                     StatusButton(statusText: "In a Call/Meeting", statusImage: "phone.fill")
                     StatusButton(statusText: "Sleeping", statusImage: "moon.fill")
@@ -60,6 +81,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+#Preview("iPhone") {
     ContentView()
 }
