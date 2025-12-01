@@ -7,23 +7,36 @@
 
 import SwiftUI
 
+enum Status: String {
+    case havingPeopleOver = "Having People Over"
+    case inACall = "In a Call/Meeting"
+    case sleeping = "Sleeping"
+    case studying = "Studying"
+    case gooning = "Gooning"
+}
+
 struct StatusButtonView: View {
-    let statusText: String
+    let status: Status
     let statusIcon: String
+    let isPressed: Bool
     
     var body: some View {
-        Button(action: {print("Tapped on \(statusText)")}) {
-            Label(statusText, systemImage: statusIcon)
-                .frame(maxWidth: .infinity)
+        Button(action:
+                {
+            print("Tapped on \(status.rawValue)")
+                }) {
+                    Label(status.rawValue, systemImage: statusIcon)
+                .frame(maxWidth: .infinity, minHeight: 44)
                 .padding(.vertical)
-                .background(Color.indigo)
+                .background(isPressed ? Color.green : Color.indigo)
                 .cornerRadius(8)
                 .foregroundColor(Color.white)
+                .font(.title2)
         }
         .padding(.horizontal)
     }
 }
 
 #Preview() {
-    StatusButtonView(statusText: "Hi", statusIcon: "person.circle")
+    StatusButtonView(status: .gooning, statusIcon: "person.circle", isPressed: false)
 }
