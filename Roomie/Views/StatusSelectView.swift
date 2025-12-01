@@ -11,7 +11,7 @@ struct StatusSelectView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
+                VStack(spacing: 12) {
                     TextView(text: "Please:")
                 
                     
@@ -19,6 +19,12 @@ struct StatusSelectView: View {
                     
                     
                     TextView(text: "Because I'm:")
+                    
+                    StatusButtonView(statusText: "Having People Over", statusIcon: "person.3.fill")
+                    StatusButtonView(statusText: "In a Call/Meeting", statusIcon: "phone.fill")
+                    StatusButtonView(statusText: "Sleeping", statusIcon: "moon.fill")
+                    StatusButtonView(statusText: "Studying", statusIcon: "book.fill")
+                    StatusButtonView(statusText: "Gooning", statusIcon: "sparkles")
                 }
             }
         }
