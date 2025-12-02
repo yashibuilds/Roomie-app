@@ -7,21 +7,35 @@
 
 import SwiftUI
 
+enum EntryMode: String, CaseIterable {
+    case doNotEnter = "Do Not Enter"
+    case enterQuietly = "Enter Quietly"
+}
+
 struct SelectStatusScreen: View {
-    @State private var selectedStatus: Status? = nil
+    @State private var selectedEntryMode: EntryMode = .doNotEnter
     @State private var selectedTime = Date()
+    @State private var selectedStatus: Status? = nil
     
     var body: some View {
             ScrollView {
                 VStack(spacing: 12) {
                     TextView(text: "Please:")
                         .padding(.top)
+                    
+                    Picker("Select Entry Mode", selection: $selectedEntryMode) {
+                        ForEach(EntryMode.allCases, id: \.self) { mode in
+                            Text(mode.rawValue).tag(mode)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .padding()
                 
                     TextView(text: "Until:")
+                    
                     DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
                         .pickerStyle(.wheel)
                         .labelsHidden()
-                    
                     
                     TextView(text: "Because I'm:")
                     
