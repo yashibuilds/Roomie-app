@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct SentStatusScreen: View {
-    
     var body: some View {
-        NavigationView {
-            Text("Status Sent!")
+        VStack(spacing: 24) {
+            Spacer()
+            
+            // Success icon
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 80))
+                .foregroundColor(.teal)
+            Text("Status sent!")
+                .font(.system(size: 28, weight: .semibold))
+            
+            Spacer()
         }
+        .padding(.horizontal, 20)
     }
-    
 }
 
-#Preview() {
+#Preview {
     SentStatusScreen()
 }
