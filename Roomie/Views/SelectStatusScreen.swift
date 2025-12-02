@@ -19,32 +19,56 @@ struct SelectStatusScreen: View {
     
     var body: some View {
             ScrollView {
-                VStack(spacing: 12) {
-                    TextView(text: "Please:")
-                        .padding(.top)
+                VStack(spacing: 32) {
+                    // PLEASE SECTION
+                    VStack(spacing: 12) {
+                        TextView(text: "Please:")
+                        
+                        Picker("Select Entry Mode", selection: $selectedEntryMode) {
+                            ForEach(EntryMode.allCases, id: \.self) { mode in
+                                Text(mode.rawValue).tag(mode)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal, 20)
+                    }
                     
-                    Picker("Select Entry Mode", selection: $selectedEntryMode) {
-                        ForEach(EntryMode.allCases, id: \.self) { mode in
-                            Text(mode.rawValue).tag(mode)
+                    // UNTIL SECTION
+                    VStack(spacing: 12) {
+                        TextView(text: "Until:")
+                        
+                        DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(.wheel)
+                            .labelsHidden()
+                            .frame(height: 180)
+                            .padding(.horizontal, 20)
+                    }
+                    
+                    // BECAUSE I'M SECTION
+                    VStack(spacing: 12) {
+                        TextView(text: "Because I'm:")
+                        
+                        VStack(spacing: 12) {
+                            ForEach(0..<Status.allCases.count) { index in
+                                StatusButtonView(status: Status.allCases[index], statusIcon: statusIcons[index])
+                            }
                         }
                     }
-                    .pickerStyle(.segmented)
-                    .padding()
-                
-                    TextView(text: "Until:")
                     
-                    DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                        .pickerStyle(.wheel)
-                        .labelsHidden()
-                    
-                    TextView(text: "Because I'm:")
-                    
-                    VStack(spacing: 15) {
-                        ForEach(0..<Status.allCases.count) { index in
-                            StatusButtonView(status: Status.allCases[index], statusIcon: statusIcons[index])
-                        }
+                    // SEND BUTTON
+                    Button(action: {print("Send status!")}) {
+                        Label("Send Status", systemImage: "paperplane.fill")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 64)
+                            .background(Color.teal)
+                            .cornerRadius(8)
                     }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 8)
                 }
+                .padding(.vertical, 24)
             }
         }
     }

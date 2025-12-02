@@ -27,14 +27,14 @@ struct StatusButtonView: View {
             print("Tapped on \(status.rawValue)")
                 }) {
                     Label(status.rawValue, systemImage: statusIcon)
-                .frame(maxWidth: .infinity, minHeight: 44)
-                .padding(.vertical)
-                .background(Color.indigo)
-                .cornerRadius(8)
-                .foregroundColor(Color.white)
-                .font(.title2)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 64)
+                        .background(Color.indigo)
+                        .cornerRadius(8)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 20)
     }
 }
 
