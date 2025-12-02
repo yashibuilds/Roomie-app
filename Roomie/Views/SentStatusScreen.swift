@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StatusSentScreen: View {
+struct SentStatusScreen: View {
     
     var body: some View {
         NavigationView {
@@ -18,5 +18,5 @@ struct StatusSentScreen: View {
 }
 
 #Preview() {
-    StatusSentScreen()
+    SentStatusScreen()
 }

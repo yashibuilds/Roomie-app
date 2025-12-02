@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct StatusSelectScreen: View {
+struct SelectStatusScreen: View {
     @State private var selectedStatus: Status? = nil
+    @State private var selectedTime = Date()
     
     var body: some View {
             ScrollView {
@@ -17,6 +18,9 @@ struct StatusSelectScreen: View {
                         .padding(.top)
                 
                     TextView(text: "Until:")
+                    DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                        .pickerStyle(.wheel)
+                        .labelsHidden()
                     
                     
                     TextView(text: "Because I'm:")
@@ -32,5 +36,5 @@ struct StatusSelectScreen: View {
     }
 
 #Preview() {
-    StatusSelectScreen()
+    SelectStatusScreen()
 }
