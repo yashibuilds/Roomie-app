@@ -11,7 +11,7 @@ import SwiftUI
 struct RoomieApp: App {
     var body: some Scene {
         WindowGroup {
-            StatusSelectView()
+            StatusSelectScreen()
         }
     }
 }
