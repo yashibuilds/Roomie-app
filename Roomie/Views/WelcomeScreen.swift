@@ -1,42 +1,38 @@
-//
-//  WelcomeScreen.swift
-//  Roomie
-//
-//  Created by Yashi Surapaneni on 12/2/25.
-//
-
 import SwiftUI
 
 struct WelcomeScreen: View {
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 40) {
-                Spacer()
-                
-                VStack(spacing: 12) {
-                    Text("Roomie")
-                        .font(.system(size:48, weight: .bold))
-                }
-                
-                Spacer()
-                
-                // Get Started Button
-                NavigationLink(destination: SelectStatusScreen()) {
-                    Text("Get Started")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 64)
-                        .background(mainColor)
-                        .cornerRadius(8)
-                }
-                .padding(.horizontal, 40)
-                .padding(.bottom, 50)
+        VStack(spacing: 0) {
+            Spacer()
+            
+            // LOGO
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 180, height: 180)
+                .padding(.bottom, 24)
+            
+            Spacer()
+            
+            // GET STARTED BUTTON
+            NavigationLink(destination: SelectStatusScreen()) {
+                Text("Get Started")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 56)
+                    .background(Color.indigo)
+                    .cornerRadius(8)
             }
+            .padding(.horizontal, 32)
+            .padding(.bottom, 50)
         }
+        .background(Color(.systemBackground))
     }
 }
 
 #Preview {
-    WelcomeScreen()
+    NavigationStack {
+        WelcomeScreen()
+    }
 }
