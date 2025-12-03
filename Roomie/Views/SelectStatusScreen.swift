@@ -60,18 +60,15 @@ struct SelectStatusScreen: View {
                     
                     // SEND BUTTON
                     NavigationLink(destination: SentStatusScreen()) {
-                        if selectedStatus == nil {
-                            Text("")
-                        } else {
                             Label("Send Status", systemImage: "paperplane.fill")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .background(secondaryColor)
+                                .background(selectedStatus == nil ? .gray : secondaryColor)
                                 .cornerRadius(8)
                         }
-                        }
+                        .disabled(selectedStatus == nil)
                         .padding(.horizontal, 20)
                         .padding(.top, 8)
                     }
