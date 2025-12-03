@@ -18,6 +18,7 @@ struct SelectStatusScreen: View {
     @State private var selectedStatus: Status? = nil
     
     var body: some View {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 32) {
                     // PLEASE SECTION
@@ -56,17 +57,18 @@ struct SelectStatusScreen: View {
                     }
                     
                     // SEND BUTTON
-                    Button(action: {print("Send status!")}) {
-                        Label("Send Status", systemImage: "paperplane.fill")
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 64)
-                            .background(Color.teal)
-                            .cornerRadius(8)
+                    NavigationLink(destination: SentStatusScreen()) {
+                            Label("Send Status", systemImage: "paperplane.fill")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 64)
+                                .background(Color.teal)
+                                .cornerRadius(8)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 8)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 8)
                 }
                 .padding(.vertical, 24)
             }
