@@ -20,7 +20,7 @@ struct WelcomeScreen: View {
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 56)
+                    .frame(height: 60)
                     .background(Color.indigo)
                     .cornerRadius(8)
             }

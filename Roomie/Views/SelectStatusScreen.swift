@@ -18,6 +18,7 @@ enum EntryMode: String, CaseIterable {
 struct SelectStatusScreen: View {
     @State private var selectedEntryMode: EntryMode = .doNotEnter
     @State private var selectedTime = Date()
+    @State private var selectedStatus: Status? = nil
     
     var body: some View {
             ScrollView {
@@ -52,7 +53,7 @@ struct SelectStatusScreen: View {
                         
                         VStack(spacing: 12) {
                             ForEach(0..<Status.allCases.count) { index in
-                                StatusButtonView(status: Status.allCases[index], statusIcon: statusIcons[index])
+                                StatusButtonView(status: Status.allCases[index], statusIcon: statusIcons[index], currButton: $selectedStatus)
                             }
                         }
                     }
@@ -63,7 +64,7 @@ struct SelectStatusScreen: View {
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 64)
+                                .frame(height: 60)
                                 .background(secondaryColor)
                                 .cornerRadius(8)
                         }

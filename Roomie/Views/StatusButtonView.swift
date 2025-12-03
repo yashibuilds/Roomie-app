@@ -20,24 +20,22 @@ let statusIcons = ["person.3.fill", "phone.fill", "moon.fill", "book.fill", "spa
 struct StatusButtonView: View {
     let status: Status
     let statusIcon: String
+    @Binding var currButton: Status?
     
     var body: some View {
         Button(action:
                 {
             print("Tapped on \(status.rawValue)")
+            currButton = status
                 }) {
                     Label(status.rawValue, systemImage: statusIcon)
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 64)
-                        .background(mainColor)
+                        .frame(height: 60)
+                        .background(currButton == status ? secondaryColor : mainColor)
                         .cornerRadius(8)
         }
         .padding(.horizontal, 20)
     }
-}
-
-#Preview() {
-    StatusButtonView(status: .gooning, statusIcon: "person.circle")
 }
