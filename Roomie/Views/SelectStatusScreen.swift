@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+let mainColor = Color.indigo
+let secondaryColor = Color.teal
+
 enum EntryMode: String, CaseIterable {
     case doNotEnter = "Do Not Enter"
     case enterQuietly = "Enter Quietly"
@@ -15,10 +18,8 @@ enum EntryMode: String, CaseIterable {
 struct SelectStatusScreen: View {
     @State private var selectedEntryMode: EntryMode = .doNotEnter
     @State private var selectedTime = Date()
-    @State private var selectedStatus: Status? = nil
     
     var body: some View {
-        NavigationStack {
             ScrollView {
                 VStack(spacing: 32) {
                     // PLEASE SECTION
@@ -63,7 +64,7 @@ struct SelectStatusScreen: View {
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 64)
-                                .background(Color.teal)
+                                .background(secondaryColor)
                                 .cornerRadius(8)
                         }
                         .padding(.horizontal, 20)
@@ -71,8 +72,8 @@ struct SelectStatusScreen: View {
                     }
                 }
                 .padding(.vertical, 24)
+                .navigationBarBackButtonHidden(true)
             }
-        }
     }
 
 #Preview() {

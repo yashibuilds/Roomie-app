@@ -31,7 +31,7 @@ struct StatusButtonView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: 64)
-                        .background(Color.indigo)
+                        .background(mainColor)
                         .cornerRadius(8)
         }
         .padding(.horizontal, 20)

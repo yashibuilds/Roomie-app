@@ -13,9 +13,8 @@ struct TextView: View {
     var body: some View {
         Text(text)
             .font(.system(size: 20, weight: .semibold))
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .center)
             .padding(.horizontal, 20)
-        
     }
 }
 
