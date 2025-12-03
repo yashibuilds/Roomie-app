@@ -12,6 +12,10 @@ struct WelcomeScreen: View {
                 .frame(width: 180, height: 180)
                 .padding(.bottom, 24)
             
+            Text("Roomie")
+                .font(.system(size: 50, weight: .bold))
+                .foregroundColor(mainColor)
+            
             Spacer()
             
             // GET STARTED BUTTON
@@ -21,7 +25,7 @@ struct WelcomeScreen: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 60)
-                    .background(Color.indigo)
+                    .background(mainColor)
                     .cornerRadius(8)
             }
             .padding(.horizontal, 32)

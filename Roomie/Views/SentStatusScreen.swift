@@ -16,7 +16,7 @@ struct SentStatusScreen: View {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 80))
                 .foregroundColor(mainColor)
-            Text("Status sent!")
+            Text("Roomies Notified!")
                 .font(.system(size: 28, weight: .semibold))
             
             Spacer()

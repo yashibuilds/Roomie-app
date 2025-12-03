@@ -25,7 +25,6 @@ struct StatusButtonView: View {
     var body: some View {
         Button(action:
                 {
-            print("Tapped on \(status.rawValue)")
             currButton = status
                 }) {
                     Label(status.rawValue, systemImage: statusIcon)
