@@ -17,7 +17,7 @@ enum EntryMode: String, CaseIterable {
 
 struct SelectStatusScreen: View {
     @State private var selectedEntryMode: EntryMode = .doNotEnter
-    @State private var selectedTime = Date()
+    @State private var selectedTime = Date().addingTimeInterval(30 * 60)
     @State private var selectedStatus: Status? = nil
     
     var body: some View {
@@ -60,6 +60,9 @@ struct SelectStatusScreen: View {
                     
                     // SEND BUTTON
                     NavigationLink(destination: SentStatusScreen()) {
+                        if selectedStatus == nil {
+                            Text("")
+                        } else {
                             Label("Send Status", systemImage: "paperplane.fill")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
@@ -67,6 +70,7 @@ struct SelectStatusScreen: View {
                                 .frame(height: 60)
                                 .background(secondaryColor)
                                 .cornerRadius(8)
+                        }
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 8)
