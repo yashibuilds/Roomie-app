@@ -5,7 +5,30 @@
 //  Created by Yashi Surapaneni on 12/3/25.
 //
 
-struct User {
+import Foundation
+
+struct User: Codable, Identifiable {
+    let id: String
+    var email: String
+    var name: String
+    var deviceToken: String? = nil
+    var roomID: String? = nil
+    let createdAt: Date
     
-    
+    func toDictionary() -> [String: Any] {
+        var dict: [String: Any] =
+        [
+            "id": id,
+            "email": email,
+            "name": name,
+            "createdAt": createdAt
+        ]
+        if let token = deviceToken {
+            dict["deviceToken"] = token
+        }
+        if let room = roomID {
+            dict["roomID"] = room
+        }
+        return dict
+    }
 }

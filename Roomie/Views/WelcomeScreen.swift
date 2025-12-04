@@ -2,36 +2,34 @@ import SwiftUI
 
 struct WelcomeScreen: View {
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            
-            // LOGO
-            Image("logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 180, height: 180)
-                .padding(.bottom, 24)
-            
-            Text("Roomie")
-                .font(.system(size: 50, weight: .bold))
-                .foregroundColor(mainColor)
-            
-            Spacer()
-            
-            // GET STARTED BUTTON
-            NavigationLink(destination: SelectStatusScreen()) {
-                Text("Get Started")
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(mainColor)
-                    .cornerRadius(8)
+        NavigationStack {
+            VStack {
+                Spacer().frame(height: 60)
+                
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160)
+                    .padding(.bottom, 8)
+                
+                Text("Roomie")
+                    .font(.system(size: 40, weight: .semibold))
+                    .foregroundColor(mainColor)
+                
+                Spacer()
+                
+                NavigationLink(destination: SelectStatusScreen()) {
+                    Text("Get Started")
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(mainColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 32)
+                        .padding(.bottom, 40)
+                }
             }
-            .padding(.horizontal, 32)
-            .padding(.bottom, 50)
         }
-        .background(Color(.systemBackground))
     }
 }
 

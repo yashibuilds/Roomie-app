@@ -20,13 +20,6 @@ struct SelectStatusScreen: View {
     @State private var selectedTime = Date().addingTimeInterval(30 * 60)
     @State private var selectedStatus: Status? = nil
     
-    func sendStatus() {
-        if let selectedStatus {
-            print("Sending Status:")
-            print("Please \(selectedEntryMode.rawValue) until \(selectedTime) because I'm \(selectedStatus.rawValue)")
-        }
-    }
-    
     var body: some View {
             ScrollView {
                 VStack(spacing: 32) {
@@ -74,9 +67,6 @@ struct SelectStatusScreen: View {
                                 .frame(height: 60)
                                 .background(selectedStatus == nil ? .gray : secondaryColor)
                                 .cornerRadius(8)
-                                .onTapGesture {
-                                    sendStatus()
-                                }
                         }
                         .disabled(selectedStatus == nil)
                         .padding(.horizontal, 20)
@@ -86,6 +76,12 @@ struct SelectStatusScreen: View {
                 .padding(.vertical, 24)
                 .navigationBarBackButtonHidden(true)
             }
+        func sendStatus() {
+            if let selectedStatus {
+                print("Sending Status:")
+                print("Please \(selectedEntryMode.rawValue) until \(selectedTime) because I'm \(selectedStatus.rawValue)")
+            }
+        }
     }
 
 #Preview() {
