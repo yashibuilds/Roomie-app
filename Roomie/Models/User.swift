@@ -11,8 +11,8 @@ struct User: Codable, Identifiable {
     let id: String
     var email: String
     var name: String
-    var deviceToken: String? = nil // nil if they haven't granted permissions yet
-    var roomID: String? = nil // nil if they haven't joined a room yet
+    var deviceToken: String? // nil if they haven't granted permissions yet
+    var roomID: String? // nil if they haven't joined a room yet
     let createdAt: Date
     
     func toDictionary() -> [String: Any] {
