@@ -6,7 +6,7 @@ class AuthManager: ObservableObject {
     @Published var currentUser: User? // nil if no user is logged in
     @Published var isAuthenticated: Bool = false // true if someone is logged in
     private let db = Firestore.firestore()
-    
+        
     /* signUp:
      Creates a Firebase account, converts account to User object, saves it to Firestore, updates app state, and reports success or failure
      */
@@ -151,4 +151,14 @@ class AuthManager: ObservableObject {
         }
     }
     
+    func signOut() throws {
+        // Sign out from Firebase Auth
+        try Auth.auth().signOut()
+        
+        // Clear user state on main thread
+        DispatchQueue.main.async {
+            self.currentUser = nil
+            self.isAuthenticated = false
+        }
+    }
 }
